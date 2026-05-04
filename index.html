@@ -310,28 +310,19 @@
   const btnLoading = document.querySelector(".btn-loading");
   const myAlert = document.querySelector(".my-alert");
 
-  fetch(scriptURL, {
-  method: "POST",
-  mode: "no-cors",
-  body: new FormData(form),
-});
-
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // tampilkan loading
     btnLoading.classList.remove("d-none");
     btnKirim.classList.add("d-none");
 
     try {
-      const response = await fetch(scriptURL, {
+      await fetch(scriptURL, {
         method: "POST",
+        mode: "no-cors", // 🔥 WAJIB
         body: new FormData(form),
       });
 
-      if (!response.ok) throw new Error("Gagal kirim");
-
-      // sukses
       btnLoading.classList.add("d-none");
       btnKirim.classList.remove("d-none");
       myAlert.classList.remove("d-none");
@@ -340,7 +331,6 @@
     } catch (error) {
       console.error("Error!", error.message);
 
-      // balikin tombol kalau gagal
       btnLoading.classList.add("d-none");
       btnKirim.classList.remove("d-none");
 
