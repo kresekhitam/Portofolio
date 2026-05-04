@@ -310,33 +310,45 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <!-- send to gmail -->
       <script>
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbw9Nhl3sjyQ2XCuWUOfoSI8horWQJi3196eTL6wFTiJJjublafDmQ4hTsidOBtR4j87/exec";
-      const form = document.forms["submit-to-google-sheet"];
-      const btnKirim = document.querySelector(".btn-kirim");
-      const btnLoading = document.querySelector(".btn-loading");
-      const myAlert = document.querySelector(".my-alert");
+  const scriptURL = "https://script.google.com/macros/s/AKfycbw9Nhl3sjyQ2XCuWUOfoSI8horWQJi3196eTL6wFTiJJjublafDmQ4hTsidOBtR4j87/exec";
+  
+  const form = document.forms["submit-to-google-sheet"];
+  const btnKirim = document.querySelector(".btn-kirim");
+  const btnLoading = document.querySelector(".btn-loading");
+  const myAlert = document.querySelector(".my-alert");
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        // ketika tombol submit di klik
-        // tampilkan tombol loading hilangkan tombol kirim
-        btnLoading.classList.toggle("d-none");
-        btnKirim.classList.toggle("d-none");
-        fetch(scriptURL, { method: "POST", body: new FormData(form) })
-          .then((response) => {
-            //tampilkan tombol kirim hilangkan tombol loading
-            btnLoading.classList.toggle("d-none");
-            btnKirim.classList.toggle("d-none");
-            //tampikan alert
-            myAlert.classList.toggle("d-none");
-            //reset form biar bersih kembali seperti tanpa kaca
-            form.reset();
-            console.log("Success!", response);
-          })
-          .catch((error) => console.error("Error!", error.message));
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // tampilkan loading
+    btnLoading.classList.remove("d-none");
+    btnKirim.classList.add("d-none");
+
+    try {
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        body: new FormData(form),
       });
-    </script>
+
+      if (!response.ok) throw new Error("Gagal kirim");
+
+      // sukses
+      btnLoading.classList.add("d-none");
+      btnKirim.classList.remove("d-none");
+      myAlert.classList.remove("d-none");
+      form.reset();
+
+    } catch (error) {
+      console.error("Error!", error.message);
+
+      // balikin tombol kalau gagal
+      btnLoading.classList.add("d-none");
+      btnKirim.classList.remove("d-none");
+
+      alert("Gagal mengirim pesan!");
+    }
+  });
+</script>
     <!--===== MAIN JS =====-->
     <script src="script.js"></script>
   </body>
