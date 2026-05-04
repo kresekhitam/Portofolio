@@ -303,12 +303,18 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <!-- send to gmail -->
       <script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbwZ_LHETeh-zeuMD30nqiLFohbCVV3pcFmJlim14alVxZj8mk8GjA3byQd0F05qiELv/exec";
+  const scriptURL = https:"//script.google.com/macros/s/AKfycbwZ_LHETeh-zeuMD30nqiLFohbCVV3pcFmJlim14alVxZj8mk8GjA3byQd0F05qiELv/exec";
   
   const form = document.forms["submit-to-google-sheet"];
   const btnKirim = document.querySelector(".btn-kirim");
   const btnLoading = document.querySelector(".btn-loading");
   const myAlert = document.querySelector(".my-alert");
+
+  fetch(scriptURL, {
+  method: "POST",
+  mode: "no-cors",
+  body: new FormData(form),
+})
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
