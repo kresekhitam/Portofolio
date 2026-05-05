@@ -223,12 +223,12 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          <div class="col-md-8">
+          <div class="col-md-8 mb-2">
             <div
               class="alert alert-success alert-dismissible fade show d-none my-alert"
               role="alert"
             >
-              <strong>Terimakasih</strong> Pesan anda sudah terkirim
+              <strong>Thankyou</strong> your'e message is delivered
               <button
                 type="button"
                 class="btn-close"
@@ -238,7 +238,7 @@
             </div>
             <form name="submit-to-google-sheet">
               <div class="mb-3">
-                <label for="name" class="form-label">Nama Lengkap</label>
+                <label for="name" class="form-label">Username</label>
                 <input
                   type="text"
                   class="form-control"
@@ -258,7 +258,7 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="pesan" class="form-label">pesan</label>
+                <label for="pesan" class="form-label">Description</label>
                 <textarea
                   class="form-control"
                   id="pesan"
@@ -267,7 +267,7 @@
                 ></textarea>
               </div>
               <button type="submit" class="btn btn-primary btn-kirim">
-                kirim
+                Send
               </button>
               <button
                 class="btn btn-primary btn-loading d-none"
@@ -275,7 +275,7 @@
                 disabled
               >
                 <span
-                  class="spinner-border spinner-border-sm mb-4"
+                  class="spinner-border spinner-border-sm"
                   role="status"
                   aria-hidden="true"
                 ></span>
@@ -304,7 +304,7 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <!-- send to gmail -->
       <script>
-  const scriptURL = "https://script.google.com/macros/library/d/1fgfuvAfGa5rtn6jIYmyvQ3Tz-b2XZhw0VnLOBNKhRQB98CBySa6jzQlP/1";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwZ_LHETeh-zeuMD30nqiLFohbCVV3pcFmJlim14alVxZj8mk8GjA3byQd0F05qiELv/exec";
   
   const form = document.forms["submit-to-google-sheet"];
   const btnKirim = document.querySelector(".btn-kirim");
